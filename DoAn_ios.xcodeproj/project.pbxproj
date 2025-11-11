@@ -16,6 +16,7 @@
 		CE8597A42EBF0BE4003DA8A3 /* DoAn_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597A32EBF0BE4003DA8A3 /* DoAn_iosTests.swift */; };
 		CE8597AE2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597AD2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift */; };
 		CE8597B02EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597AF2EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift */; };
+		CE947B9E2EC084A700D72554 /* AddNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE947B9D2EC084A700D72554 /* AddNoteController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		CE8597A92EBF0BE4003DA8A3 /* DoAn_iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoAn_iosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE8597AD2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoAn_iosUITests.swift; sourceTree = "<group>"; };
 		CE8597AF2EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoAn_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CE947B9D2EC084A700D72554 /* AddNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				CE8597902EBF0BDE003DA8A3 /* ViewController.swift */,
+				CE947B9D2EC084A700D72554 /* AddNoteController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE8597912EBF0BDE003DA8A3 /* ViewController.swift in Sources */,
+				CE947B9E2EC084A700D72554 /* AddNoteController.swift in Sources */,
 				CE85978D2EBF0BDE003DA8A3 /* AppDelegate.swift in Sources */,
 				CE85978F2EBF0BDE003DA8A3 /* SceneDelegate.swift in Sources */,
 			);
