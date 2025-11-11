@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE29C3632EC34F0800DA328C /* addNote.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE29C3622EC34F0800DA328C /* addNote.storyboard */; };
 		CE85978D2EBF0BDE003DA8A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE85978C2EBF0BDE003DA8A3 /* AppDelegate.swift */; };
 		CE85978F2EBF0BDE003DA8A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE85978E2EBF0BDE003DA8A3 /* SceneDelegate.swift */; };
 		CE8597912EBF0BDE003DA8A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597902EBF0BDE003DA8A3 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE29C3622EC34F0800DA328C /* addNote.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = addNote.storyboard; sourceTree = "<group>"; };
 		CE8597892EBF0BDE003DA8A3 /* DoAn_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoAn_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE85978C2EBF0BDE003DA8A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE85978E2EBF0BDE003DA8A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				CE8597BD2EBF0C59003DA8A3 /* Controller */,
 				CE8597BC2EBF0C30003DA8A3 /* System files */,
 				CE8597922EBF0BDE003DA8A3 /* Main.storyboard */,
+				CE29C3622EC34F0800DA328C /* addNote.storyboard */,
 			);
 			path = DoAn_ios;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE29C3632EC34F0800DA328C /* addNote.storyboard in Resources */,
 				CE8597992EBF0BE3003DA8A3 /* LaunchScreen.storyboard in Resources */,
 				CE8597962EBF0BE3003DA8A3 /* Assets.xcassets in Resources */,
 				CE8597942EBF0BDE003DA8A3 /* Main.storyboard in Resources */,
