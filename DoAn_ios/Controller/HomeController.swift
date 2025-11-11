@@ -28,18 +28,25 @@ class HomeController: UIViewController, UITableViewDataSource {
         let date2 = formatter.date(from: "2025-11-15")!
         let date3 = formatter.date(from: "2025-11-12")!
         
-        notes = [
-            NoteData(id: 4, title: "đi chơi với mấy ní", content: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.", date: date1),
-            NoteData(id: 4, title: "da banh 3 tran", content: "o pho di bo nguyen hue", date: date3),
-            NoteData(id: 4, title: "di sinh nhat", content: "o pho di bo nguyen hue", date: date1),
-            
-            NoteData(id: 4, title: "di hoc bai nhom vao ngay 12/11", content: "o pho di bo nguyen hue", date: date3),
-
-                 ];
+//        notes = [
+//            NoteData(id: 4, title: "đi chơi với mấy ní", content: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.", date: date1),
+//            NoteData(id: 4, title: "da banh 3 tran", content: "o pho di bo nguyen hue", date: date3),
+//            NoteData(id: 4, title: "di sinh nhat", content: "o pho di bo nguyen hue", date: date1),
+//
+//            NoteData(id: 4, title: "di hoc bai nhom vao ngay 12/11", content: "o pho di bo nguyen hue", date: date3),
+//
+//                 ];
         
-        // 🧠 Lọc chỉ giữ công việc hôm nay hoặc ngày mai
+        //  Lọc chỉ giữ công việc hôm nay hoặc ngày mai
             let today = Date()
+        let dateString = ISO8601DateFormatter().string(from: date2)
+        //them du lieu
+        DatabaseManager.shared.insertNote(title: "ghi chu 3", content: "chao moij nguoi", date: dateString)
             let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        
+        
+        //gan du lieu
+        notes = DatabaseManager.shared.fetchAllNotes()
 
             notes = notes.filter { note in
                 Calendar.current.isDate(note.date, inSameDayAs: today) ||
