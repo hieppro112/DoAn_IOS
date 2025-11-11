@@ -17,6 +17,8 @@
 		CE8597AE2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597AD2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift */; };
 		CE8597B02EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597AF2EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift */; };
 		CE8824582EBFC6A4007A6474 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8824572EBFC6A4007A6474 /* HomeController.swift */; };
+		CE8CD9772EC3218B004058D5 /* FMDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE8CD9762EC3218B004058D5 /* FMDB */; };
+		CE8CD9792EC321F0004058D5 /* databaseNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CD9782EC321F0004058D5 /* databaseNotes.swift */; };
 		CE94F6E32EC04CE700A32B62 /* NoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE94F6E22EC04CE700A32B62 /* NoteData.swift */; };
 		CEB448D22EC0459C004C8308 /* cellHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB448D12EC0459C004C8308 /* cellHomeTableViewCell.swift */; };
 		CEE0FFB52EC16008003EBE14 /* DetailNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0FFB42EC16008003EBE14 /* DetailNoteController.swift */; };
@@ -54,6 +56,7 @@
 		CE8597AD2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoAn_iosUITests.swift; sourceTree = "<group>"; };
 		CE8597AF2EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoAn_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CE8824572EBFC6A4007A6474 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		CE8CD9782EC321F0004058D5 /* databaseNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = databaseNotes.swift; sourceTree = "<group>"; };
 		CE94F6E22EC04CE700A32B62 /* NoteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteData.swift; sourceTree = "<group>"; };
 		CEB448D12EC0459C004C8308 /* cellHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellHomeTableViewCell.swift; sourceTree = "<group>"; };
 		CEE0FFB42EC16008003EBE14 /* DetailNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoteController.swift; sourceTree = "<group>"; };
@@ -64,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8CD9772EC3218B004058D5 /* FMDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				CE94F6E22EC04CE700A32B62 /* NoteData.swift */,
+				CE8CD9782EC321F0004058D5 /* databaseNotes.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -179,6 +184,9 @@
 			dependencies = (
 			);
 			name = DoAn_ios;
+			packageProductDependencies = (
+				CE8CD9762EC3218B004058D5 /* FMDB */,
+			);
 			productName = DoAn_ios;
 			productReference = CE8597892EBF0BDE003DA8A3 /* DoAn_ios.app */;
 			productType = "com.apple.product-type.application";
@@ -251,6 +259,9 @@
 				Base,
 			);
 			mainGroup = CE8597802EBF0BDE003DA8A3;
+			packageReferences = (
+				CE8CD9752EC3218B004058D5 /* XCRemoteSwiftPackageReference "fmdb" */,
+			);
 			productRefGroup = CE85978A2EBF0BDE003DA8A3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -298,6 +309,7 @@
 				CE94F6E32EC04CE700A32B62 /* NoteData.swift in Sources */,
 				CE8597912EBF0BDE003DA8A3 /* ViewController.swift in Sources */,
 				CEE0FFB52EC16008003EBE14 /* DetailNoteController.swift in Sources */,
+				CE8CD9792EC321F0004058D5 /* databaseNotes.swift in Sources */,
 				CE85978D2EBF0BDE003DA8A3 /* AppDelegate.swift in Sources */,
 				CEB448D22EC0459C004C8308 /* cellHomeTableViewCell.swift in Sources */,
 				CE85978F2EBF0BDE003DA8A3 /* SceneDelegate.swift in Sources */,
@@ -636,6 +648,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE8CD9752EC3218B004058D5 /* XCRemoteSwiftPackageReference "fmdb" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ccgus/fmdb";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE8CD9762EC3218B004058D5 /* FMDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE8CD9752EC3218B004058D5 /* XCRemoteSwiftPackageReference "fmdb" */;
+			productName = FMDB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE8597812EBF0BDE003DA8A3 /* Project object */;
 }
