@@ -16,6 +16,9 @@
 		CE8597A42EBF0BE4003DA8A3 /* DoAn_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597A32EBF0BE4003DA8A3 /* DoAn_iosTests.swift */; };
 		CE8597AE2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597AD2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift */; };
 		CE8597B02EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597AF2EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift */; };
+		CEA7ADCE2EBFBD3C00D9B9EC /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7ADCD2EBFBD3C00D9B9EC /* Models.swift */; };
+		CEA7ADD02EBFBE7C00D9B9EC /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7ADCF2EBFBE7C00D9B9EC /* TaskListViewModel.swift */; };
+		CEA7ADD22EBFBF8A00D9B9EC /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7ADD12EBFBF8A00D9B9EC /* TaskListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		CE8597A92EBF0BE4003DA8A3 /* DoAn_iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoAn_iosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE8597AD2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoAn_iosUITests.swift; sourceTree = "<group>"; };
 		CE8597AF2EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoAn_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CEA7ADCD2EBFBD3C00D9B9EC /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		CEA7ADCF2EBFBE7C00D9B9EC /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
+		CEA7ADD12EBFBF8A00D9B9EC /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		CE85978B2EBF0BDE003DA8A3 /* DoAn_ios */ = {
 			isa = PBXGroup;
 			children = (
+				CEA7ADCC2EBFBCE000D9B9EC /* Khanh */,
 				CE8597BD2EBF0C59003DA8A3 /* Controller */,
 				CE8597BC2EBF0C30003DA8A3 /* System files */,
 				CE8597922EBF0BDE003DA8A3 /* Main.storyboard */,
@@ -141,6 +148,16 @@
 				CE8597902EBF0BDE003DA8A3 /* ViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		CEA7ADCC2EBFBCE000D9B9EC /* Khanh */ = {
+			isa = PBXGroup;
+			children = (
+				CEA7ADCD2EBFBD3C00D9B9EC /* Models.swift */,
+				CEA7ADD12EBFBF8A00D9B9EC /* TaskListView.swift */,
+				CEA7ADCF2EBFBE7C00D9B9EC /* TaskListViewModel.swift */,
+			);
+			path = Khanh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +293,10 @@
 			files = (
 				CE8597912EBF0BDE003DA8A3 /* ViewController.swift in Sources */,
 				CE85978D2EBF0BDE003DA8A3 /* AppDelegate.swift in Sources */,
+				CEA7ADD02EBFBE7C00D9B9EC /* TaskListViewModel.swift in Sources */,
 				CE85978F2EBF0BDE003DA8A3 /* SceneDelegate.swift in Sources */,
+				CEA7ADCE2EBFBD3C00D9B9EC /* Models.swift in Sources */,
+				CEA7ADD22EBFBF8A00D9B9EC /* TaskListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
