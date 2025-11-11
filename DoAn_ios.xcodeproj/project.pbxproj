@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE8482E22EC073AF00319C5C /* TagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8482E12EC073AF00319C5C /* TagController.swift */; };
+		CE8482E42EC0801000319C5C /* AddTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8482E32EC0801000319C5C /* AddTagController.swift */; };
 		CE85978D2EBF0BDE003DA8A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE85978C2EBF0BDE003DA8A3 /* AppDelegate.swift */; };
 		CE85978F2EBF0BDE003DA8A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE85978E2EBF0BDE003DA8A3 /* SceneDelegate.swift */; };
 		CE8597912EBF0BDE003DA8A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597902EBF0BDE003DA8A3 /* ViewController.swift */; };
@@ -16,6 +18,7 @@
 		CE8597A42EBF0BE4003DA8A3 /* DoAn_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597A32EBF0BE4003DA8A3 /* DoAn_iosTests.swift */; };
 		CE8597AE2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597AD2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift */; };
 		CE8597B02EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597AF2EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift */; };
+		CE870DB82EC116FB0078C91B /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE870DB72EC116FB0078C91B /* TagCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE8482E12EC073AF00319C5C /* TagController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagController.swift; sourceTree = "<group>"; };
+		CE8482E32EC0801000319C5C /* AddTagController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagController.swift; sourceTree = "<group>"; };
 		CE8597892EBF0BDE003DA8A3 /* DoAn_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoAn_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE85978C2EBF0BDE003DA8A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE85978E2EBF0BDE003DA8A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 		CE8597A92EBF0BE4003DA8A3 /* DoAn_iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoAn_iosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE8597AD2EBF0BE4003DA8A3 /* DoAn_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoAn_iosUITests.swift; sourceTree = "<group>"; };
 		CE8597AF2EBF0BE4003DA8A3 /* DoAn_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoAn_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CE870DB72EC116FB0078C91B /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,9 @@
 			isa = PBXGroup;
 			children = (
 				CE8597902EBF0BDE003DA8A3 /* ViewController.swift */,
+				CE8482E12EC073AF00319C5C /* TagController.swift */,
+				CE8482E32EC0801000319C5C /* AddTagController.swift */,
+				CE870DB72EC116FB0078C91B /* TagCollectionViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -275,7 +284,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE8597912EBF0BDE003DA8A3 /* ViewController.swift in Sources */,
+				CE8482E42EC0801000319C5C /* AddTagController.swift in Sources */,
 				CE85978D2EBF0BDE003DA8A3 /* AppDelegate.swift in Sources */,
+				CE870DB82EC116FB0078C91B /* TagCollectionViewCell.swift in Sources */,
+				CE8482E22EC073AF00319C5C /* TagController.swift in Sources */,
 				CE85978F2EBF0BDE003DA8A3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
