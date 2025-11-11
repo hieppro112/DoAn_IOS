@@ -13,7 +13,7 @@ import Foundation
     var title: String
     var content: String
     var date: Date
-    var isCompleted: Bool = false
+    var isCompleted: Int = 0
 
     // Hàm định dạng ngày hiển thị
     var formattedDate: String {

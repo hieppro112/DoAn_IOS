@@ -57,7 +57,7 @@ class DatabaseManager {
         var notes: [NoteData] = []
         guard let db = database, db.open() else { return [] }
 
-        let sql = "SELECT * FROM notes ORDER BY id DESC"
+        let sql = "SELECT * FROM notes ORDER BY date DESC, isCompleted DESC"
         do {
             let results = try db.executeQuery(sql, values: nil)
             while results.next() {
@@ -65,7 +65,8 @@ class DatabaseManager {
                     id: Int(results.int(forColumn: "id")),
                     title: results.string(forColumn: "title") ?? "",
                     content: results.string(forColumn: "content") ?? "",
-                    date: ISO8601DateFormatter().date(from: results.string(forColumn: "date") ?? "") ?? Date()
+                    date: ISO8601DateFormatter().date(from: results.string(forColumn: "date") ?? "") ?? Date(),
+                    isCompleted: Int(results.int(forColumn: "isCompleted"))
                 )
                 notes.append(note)
             }
@@ -82,9 +83,29 @@ class DatabaseManager {
         let sql = "DELETE FROM notes WHERE id = ?"
         do {
             try db.executeUpdate(sql, values: [id])
+            print("xoá thành công item id : \(id)")
         } catch {
             print(" Lỗi xoá:", error.localizedDescription)
         }
         db.close()
     }
+    
+    // Cập nhật ghi chú
+    func updateNote(note:NoteData) {
+        guard let db = database, db.open() else { return }
+        let sql = """
+            UPDATE notes
+            SET title = ?, content = ?, date = ?, isCompleted = ?
+            WHERE id = ?
+        """
+        do {
+            try db.executeUpdate(sql, values: [note.title, note.content, note.date, note.isCompleted, note.id])
+            print("Cập nhật note id=\(note.id) thành công")
+        } catch {
+            print(" Lỗi khi cập nhật note:", error.localizedDescription)
+        }
+        db.close()
+    }
+    
+    
 }
