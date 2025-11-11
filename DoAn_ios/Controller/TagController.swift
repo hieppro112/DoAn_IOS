@@ -23,7 +23,7 @@ class TagController: UIViewController {
         view.backgroundColor = .systemGroupedBackground
         setupCollectionView()
         loadSavedTags()
-        enableLongPressToDelete() 
+        enableLongPressToDelete()
     }
     
     override func viewDidLayoutSubviews() {
@@ -54,7 +54,7 @@ class TagController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "nhandan", bundle: nil)
         guard let addVC = storyboard.instantiateViewController(withIdentifier: "AddTagController") as? AddTagController else { return }
         
         addVC.modalPresentationStyle = .formSheet
