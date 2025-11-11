@@ -27,7 +27,7 @@
         <scene sceneID="gZ2-FW-0kf">
             <objects>
                 <viewController id="gjN-N2-m0i" userLabel="HomeNotesController" customClass="HomeController" customModule="DoAn_ios" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="868-1T-Q6l">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="868-1T-Q6l">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -65,7 +65,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NwT-SA-TeW">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NwT-SA-TeW">
                                 <rect key="frame" x="168.66666666666666" y="791" width="56" height="75"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <constraints>
@@ -73,8 +73,8 @@
                                     <constraint firstAttribute="width" constant="56" id="xN9-bH-hSH"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="HZU-vI-5TP">
-                                <rect key="frame" x="7" y="154" width="371" height="573"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="HZU-vI-5TP">
+                                <rect key="frame" x="6" y="150" width="371" height="573"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="573" id="CGY-wL-MBn"/>
@@ -89,36 +89,49 @@
                                             <rect key="frame" x="0.0" y="0.0" width="371" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Cong viec hom nay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yY1-jL-hMH">
-                                                    <rect key="frame" x="20" y="7" width="221" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cong viec hom nay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yY1-jL-hMH">
+                                                    <rect key="frame" x="-359" y="7" width="221" height="30"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                     <color key="textColor" systemColor="systemPinkColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11/9/2025" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nmj-Nh-AV5">
-                                                    <rect key="frame" x="297" y="129" width="75" height="21"/>
+                                                    <rect key="frame" x="-82" y="129" width="75" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On tap kiem tra" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osi-8a-hct">
-                                                    <rect key="frame" x="25" y="45" width="164" height="30"/>
+                                                    <rect key="frame" x="21" y="45" width="164" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YWa-n5-uOD">
+                                                    <rect key="frame" x="283" y="16" width="68" height="51"/>
+                                                    <color key="tintColor" systemColor="systemGreenColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="68" id="Oi9-34-Llt"/>
+                                                        <constraint firstAttribute="height" constant="52.329999999999998" id="gjl-nK-IEc"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="YWa-n5-uOD" firstAttribute="leading" secondItem="yY1-jL-hMH" secondAttribute="trailing" constant="44" id="7A5-51-2n7"/>
                                                 <constraint firstAttribute="trailing" secondItem="Nmj-Nh-AV5" secondAttribute="trailing" constant="7" id="M7r-AY-gKK"/>
                                                 <constraint firstItem="osi-8a-hct" firstAttribute="leading" secondItem="z5G-BT-LRG" secondAttribute="leadingMargin" constant="5" id="Uif-jq-loR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="YWa-n5-uOD" secondAttribute="trailing" constant="10" id="Xjt-es-SJY"/>
                                                 <constraint firstItem="Nmj-Nh-AV5" firstAttribute="top" secondItem="z5G-BT-LRG" secondAttribute="top" constant="129" id="YPl-p3-7It"/>
                                                 <constraint firstItem="yY1-jL-hMH" firstAttribute="top" secondItem="z5G-BT-LRG" secondAttribute="top" constant="7" id="bWH-GY-xqA"/>
+                                                <constraint firstItem="YWa-n5-uOD" firstAttribute="top" secondItem="z5G-BT-LRG" secondAttribute="topMargin" constant="1" id="euy-9k-qVD"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="YWa-n5-uOD" secondAttribute="bottom" constant="85.670000000000002" id="fZn-KF-u0x"/>
                                                 <constraint firstAttribute="bottom" secondItem="Nmj-Nh-AV5" secondAttribute="bottom" constant="11" id="tOj-i1-hd3"/>
                                                 <constraint firstItem="osi-8a-hct" firstAttribute="top" secondItem="yY1-jL-hMH" secondAttribute="bottom" constant="8" id="whY-KA-G2A"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="datetimeDeadLine" destination="Nmj-Nh-AV5" id="V4n-m6-x0Z"/>
+                                            <outlet property="statusIcon" destination="YWa-n5-uOD" id="eTx-N0-3ub"/>
                                             <outlet property="txtDeadLine" destination="yY1-jL-hMH" id="2mf-jz-yOY"/>
                                             <outlet property="txtTitle" destination="osi-8a-hct" id="Ev8-Dd-ED0"/>
                                             <segue destination="KNk-iF-zta" kind="show" identifier="chuyen_detailNotes" id="Zub-Pz-5MC"/>
@@ -318,6 +331,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="plus" catalog="system" width="128" height="113"/>
