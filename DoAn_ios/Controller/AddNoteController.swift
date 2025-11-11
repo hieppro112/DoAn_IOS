@@ -9,7 +9,7 @@ class AddNoteController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textShowSticker: UILabel!
 
     // MARK: - Placeholder text
-    let placeholderText = "Mời nhập những lời nhắc nhở dành cho bản thân..."
+    let placeholderText = "Mời nhập những lời nhắc nhở dành cho bản thân"
 
     override func viewDidLoad() {
         super.viewDidLoad()
