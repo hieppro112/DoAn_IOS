@@ -19,7 +19,7 @@ struct TagView: View {
     }
 }
 
-// --- 2. Component Task Row (Giữ nguyên) ---
+// --- 2. Component Task Row ---
 struct TaskRow: View {
     @Environment(\.presentationMode) var presentationMode
     var note: NoteData
@@ -61,7 +61,7 @@ struct TaskRow: View {
                 }
 
                 Button("Chi tiết") {
-    NotificationCenter.default.post(name: .didRequestNoteDetail, object: note)
+                    NotificationCenter.default.post(name: .didRequestNoteDetail, object: note)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
@@ -116,96 +116,90 @@ struct TaskListView: View {
     @State private var selectedFilter = "Tất cả công việc"
     
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .bottomTrailing) {
+        // ĐÃ XÓA NavigationStack
+        ZStack(alignment: .bottomTrailing) {
+            
+            VStack(spacing: 8) {
                 
-                VStack(spacing: 8) {
-                    
-                    // BỔ SUNG: NÚT THỐNG KÊ (Nằm trên thanh tìm kiếm)
-                    HStack {
-                        Spacer()
-                        // NavigationLink để chuyển đến màn hình thống kê (TaskStatsView)
-                        NavigationLink(destination: TaskStatsView(allTasks: viewModel.notes)) {
-                             Image(systemName: "chart.pie.fill")
-                                 .foregroundColor(.orange)
-                                 .font(.title3) // Định dạng kích thước
-                        }
+                // BỔ SUNG: NÚT THỐNG KÊ (Nằm trên thanh tìm kiếm)
+                HStack {
+                    Spacer()
+                    // NavigationLink sẽ sử dụng Navigation của UIKit Host
+                    NavigationLink(destination: TaskStatsView(allTasks: viewModel.notes)) {
+                         Image(systemName: "chart.pie.fill")
+                             .foregroundColor(.orange)
+                             .font(.title3) // Định dạng kích thước
                     }
-                    .padding(.horizontal, 16)
-                    
-                    // 1. THANH TÌM KIẾM CUSTOM
-                    CustomSearchBar(searchText: $viewModel.searchText)
-                        .padding(.horizontal, 16)
-                    
-                    // 2. NÚT LỌC
-                    HStack {
-                        Spacer()
-                        Menu {
-                            Button("Tất cả công việc") {
-                                selectedFilter = "Tất cả công việc"
-                                viewModel.setFilter(.all)
-                            }
-                            Button("Đã hoàn thành") {
-                                selectedFilter = "Đã hoàn thành"
-                                viewModel.setFilter(.completed)
-                            }
-                            Button("Chưa hoàn thành") {
-                                selectedFilter = "Chưa hoàn thành"
-                                viewModel.setFilter(.pending)
-                            }
-                        } label: {
-                            HStack {
-                                Text(selectedFilter)
-                                Image(systemName: "chevron.down")
-                            }
-                            .font(.caption)
-                            .padding(8)
-                            .background(Color(white: 0.9))
-                            .foregroundColor(.black)
-                            .cornerRadius(8)
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                    
-                    // 3. DANH SÁCH CÔNG VIỆC
-                    List {
-                        ForEach(viewModel.filteredNotes) { note in
-                            TaskRow(note: note)
-                                .listRowSeparator(.hidden)
-                                .listRowBackground(Color.clear)
-                                .padding(.vertical, 4)
-                                .swipeActions(edge: .leading) {
-                                    Button {
-                                        viewModel.toggleCompletion(note: note)
-                                    } label: {
-                                        Label(
-                                            note.isCompleteBool ? "Hủy" : "Hoàn thành",
-                                            systemImage: note.isCompleteBool
-                                            ? "arrow.uturn.backward"
-                                            : "checkmark.circle.fill"
-                                        )
-                                    }
-                                    .tint(note.isCompleteBool ? .gray : .green)
-                                }
-                        }
-                    }
-                    .listStyle(.plain)
-                    .scrollContentBackground(.hidden)
                 }
+                .padding(.horizontal, 16)
                 
-                .padding(.trailing, 20)
-                .padding(.bottom, 20)
+                // 1. THANH TÌM KIẾM CUSTOM
+                CustomSearchBar(searchText: $viewModel.searchText)
+                    .padding(.horizontal, 16)
+                
+                // 2. NÚT LỌC
+                HStack {
+                    Spacer()
+                    Menu {
+                        Button("Tất cả công việc") {
+                            selectedFilter = "Tất cả công việc"
+                            viewModel.setFilter(.all)
+                        }
+                        Button("Đã hoàn thành") {
+                            selectedFilter = "Đã hoàn thành"
+                            viewModel.setFilter(.completed)
+                        }
+                        Button("Chưa hoàn thành") {
+                            selectedFilter = "Chưa hoàn thành"
+                            viewModel.setFilter(.pending)
+                        }
+                    } label: {
+                        HStack {
+                            Text(selectedFilter)
+                            Image(systemName: "chevron.down")
+                        }
+                        .font(.caption)
+                        .padding(8)
+                        .background(Color(white: 0.9))
+                        .foregroundColor(.black)
+                        .cornerRadius(8)
+                    }
+                }
+                .padding(.horizontal, 16)
+                
+                // 3. DANH SÁCH CÔNG VIỆC
+                List {
+                    ForEach(viewModel.filteredNotes) { note in
+                        TaskRow(note: note)
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
+                            .padding(.vertical, 4)
+                            .swipeActions(edge: .leading) {
+                                Button {
+                                    viewModel.toggleCompletion(note: note)
+                                } label: {
+                                    Label(
+                                        note.isCompleteBool ? "Hủy" : "Hoàn thành",
+                                        systemImage: note.isCompleteBool
+                                        ? "arrow.uturn.backward"
+                                        : "checkmark.circle.fill"
+                                    )
+                                }
+                                .tint(note.isCompleteBool ? .gray : .green)
+                            }
+                    }
+                }
+                .listStyle(.plain)
+                .scrollContentBackground(.hidden)
             }
             
-            // --- Cấu hình Navigation ---
-            // ĐÃ XÓA .navigationTitle("Danh sách các công việc")
-            // ĐÃ XÓA .navigationBarTitleDisplayMode(.inline)
-            
-            // ĐÃ XÓA .toolbar { ... }
-            
-            .onAppear {
-                viewModel.loadTasks()
-            }
-        } // Hết NavigationStack
+            .padding(.trailing, 20)
+            .padding(.bottom, 20)
+        }
+        
+        .onAppear {
+            viewModel.loadTasks()
+        }
+        // KHÔNG CÓ NAVIGATION MODIFIERS NÀO Ở ĐÂY
     }
 }

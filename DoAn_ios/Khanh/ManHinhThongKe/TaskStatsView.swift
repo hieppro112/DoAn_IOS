@@ -86,7 +86,7 @@ struct TaskStatsView: View {
                     .fontWeight(.bold)
                     .padding(.top, 20)
                 
-                // BIỂU ĐỒ QUẠT (PIE CHART) ĐÃ SỬA LỖI LOGIC
+                // BIỂU ĐỒ QUẠT (PIE CHART)
                 ZStack {
                     let rate = viewModel.stats.completionRate
                     // Tính góc cho phần đã hoàn thành
@@ -98,7 +98,6 @@ struct TaskStatsView: View {
                          .frame(width: 200, height: 200)
 
                     // 2. Lát cắt "Đã hoàn thành" (Completed) - Màu Xanh Lá
-                    // Bắt đầu từ 12 giờ (-90 độ) và vẽ theo chiều kim đồng hồ
                     PieSlice(startAngle: .degrees(-90), endAngle: .degrees(-90) + completedAngle)
                          .fill(Color.green)
                          .frame(width: 200, height: 200)
@@ -147,8 +146,8 @@ struct TaskStatsView: View {
             .onAppear {
                 viewModel.calculateStats(from: allTasks)
             }
-            .navigationTitle("Thống kê")
-            .navigationBarTitleDisplayMode(.inline) // Giữ lại cho NavigationStack
         } // Hết ScrollView
+        .navigationTitle("Thống kê") // **Bổ sung Tiêu đề Navigation Bar** (được hiển thị bởi UIKit)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
