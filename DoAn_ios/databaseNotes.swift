@@ -32,10 +32,20 @@ class DatabaseManager {
             date TEXT,
             isCompleted INTEGER DEFAULT 0,
             isGhim INTEGER DEFAULT 0
-        )
+        );
         """
+        
+        // Bảng TAGS (Lưu danh sách nhãn dán)
+                let createTagsTableSQL = """
+                CREATE TABLE IF NOT EXISTS tags (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL UNIQUE,
+                    color TEXT NOT NULL
+                );
+                """
         do {
             try db.executeUpdate(createTableSQL, values: nil)
+            try db.executeUpdate(createTagsTableSQL, values: nil)
         } catch {
             print(" Lỗi tạo bảng:", error.localizedDescription)
         }
@@ -141,6 +151,9 @@ class DatabaseManager {
         db.close()
     }
     
+    
+    
+    //them tag
     func insertTag(tag: Tag) {
             guard let db = database, db.open() else { return }
             let sql = "INSERT INTO tags (name, color) VALUES (?, ?)"
