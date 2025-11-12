@@ -141,5 +141,126 @@ class DatabaseManager {
         db.close()
     }
     
+    func insertTag(tag: Tag) {
+            guard let db = database, db.open() else { return }
+            let sql = "INSERT INTO tags (name, color) VALUES (?, ?)"
+            
+            var newTagId: Int = 0
+            
+            do {
+                try db.executeUpdate(sql, values: [tag.name, tag.color])
+                
+                // Lấy ID tự động vừa được SQLite gán cho hàng mới
+                newTagId = Int(db.lastInsertRowId)
+                
+                // Cập nhật thông báo print
+                print(" DB SUCCESS: Thêm nhãn dán '\(tag.name)' thành công. ID mới: \(newTagId)")
+                
+            } catch {
+                print(" DB ERROR: Lỗi thêm tag '\(tag.name)':", error.localizedDescription)
+            }
+            db.close()
+        }
+
+        /// Lấy tất cả nhãn dán đã lưu
+        func fetchAllTags() -> [Tag] {
+            var tags: [Tag] = []
+            guard let db = database, db.open() else { return [] }
+
+            let sql = "SELECT id, name, color FROM tags ORDER BY name ASC"
+            do {
+                let results = try db.executeQuery(sql, values: nil)
+                while results.next() {
+                    let tag = Tag(
+                        id: Int(results.int(forColumn: "id")),
+                        name: results.string(forColumn: "name") ?? "",
+                        color: results.string(forColumn: "color") ?? ""
+                    )
+                    tags.append(tag)
+                }
+            } catch {
+                print("Lỗi truy vấn tags:", error.localizedDescription)
+            }
+            db.close()
+            return tags
+        }
+
+        /// Xóa nhãn dán theo ID
+        func deleteTag(id: Int) {
+            guard let db = database, db.open() else { return }
+            let sql = "DELETE FROM tags WHERE id = ?"
+            do {
+                try db.executeUpdate(sql, values: [id])
+                print("Xóa nhãn dán id=\(id) thành công.")
+            } catch {
+                print("Lỗi xóa tag:", error.localizedDescription)
+            }
+            db.close()
+        }
+
+        // MARK: - LinkTag Management
+
+        /// Thêm liên kết giữa một Ghi chú và một Tag
+        func insertLinkTag(notesID: Int, tagID: Int) {
+            guard let db = database, db.open() else { return }
+            let sql = "INSERT OR IGNORE INTO link_tags (notesID, tagID) VALUES (?, ?)"
+            do {
+                try db.executeUpdate(sql, values: [notesID, tagID])
+            } catch {
+                print("Lỗi thêm LinkTag:", error.localizedDescription)
+            }
+            db.close()
+        }
+
+        /// Xóa tất cả liên kết cho một Ghi chú cụ thể
+        func deleteAllLinkTags(for notesID: Int) {
+            guard let db = database, db.open() else { return }
+            let sql = "DELETE FROM link_tags WHERE notesID = ?"
+            do {
+                try db.executeUpdate(sql, values: [notesID])
+            } catch {
+                print("Lỗi xóa LinkTags:", error.localizedDescription)
+            }
+            db.close()
+        }
+
+        /// Lấy tất cả Tags của một Ghi chú cụ thể
+        func fetchTags(for notesID: Int) -> [Tag] {
+            var tags: [Tag] = []
+            guard let db = database, db.open() else { return [] }
+
+            let sql = """
+            SELECT t.id, t.name, t.color
+            FROM tags t
+            JOIN link_tags lt ON t.id = lt.tagID
+            WHERE lt.notesID = ?
+            ORDER BY t.name ASC
+            """
+            do {
+                let results = try db.executeQuery(sql, values: [notesID])
+                while results.next() {
+                    let tag = Tag(
+                        id: Int(results.int(forColumn: "id")),
+                        name: results.string(forColumn: "name") ?? "",
+                        color: results.string(forColumn: "color") ?? ""
+                    )
+                    tags.append(tag)
+                }
+            } catch {
+                print("Lỗi truy vấn Tags của Note:", error.localizedDescription)
+            }
+            db.close()
+            return tags
+        }
+        
+        // MARK: - Date Helpers
+        
+        /// Chuyển từ Date → String (để lưu vào DB)
+        func stringFromDate(_ date: Date) -> String {
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions = [.withInternetDateTime]
+            return formatter.string(from: date)
+        }
+    
     
 }
