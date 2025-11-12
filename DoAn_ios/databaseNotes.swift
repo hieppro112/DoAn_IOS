@@ -129,7 +129,9 @@ class DatabaseManager {
             WHERE id = ?
         """
         do {
-            try db.executeUpdate(sql, values: [note.title, note.content, note.date, note.isCompleted, note.id])
+            let dateString = ISO8601DateFormatter().string(from: note.date)
+            try db.executeUpdate(sql, values: [note.title, note.content, dateString, note.isCompleted, note.id])
+
             print("Cập nhật note id=\(note.id) thành công")
         } catch {
             print(" Lỗi khi cập nhật note:", error.localizedDescription)

@@ -15,6 +15,14 @@ import Foundation
     var date: Date
     var isCompleted: Int = 0
     var isGhim: Int = 0
+     var tagID: Int? = nil
+     var tags: [Tag] = []
+     
+
+     // Biến tính toán để sử dụng trong SwiftUI
+     var isCompleteBool: Bool {
+         return isCompleted == 1
+     }
 
     // Hàm định dạng ngày hiển thị
     var formattedDate: String {
