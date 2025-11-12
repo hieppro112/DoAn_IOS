@@ -115,6 +115,13 @@
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sticker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0h-kK-rGk">
+                                                    <rect key="frame" x="142" y="12" width="75" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="APY-uA-Ede" firstAttribute="leading" secondItem="z5G-BT-LRG" secondAttribute="leadingMargin" id="9kJ-oG-Zd4"/>
@@ -135,6 +142,7 @@
                                             <outlet property="datetimeDeadLine" destination="bB1-If-FxH" id="2uB-of-rqh"/>
                                             <outlet property="isGhimIcon" destination="hc7-9D-vCY" id="2CM-fy-agK"/>
                                             <outlet property="statusIcon" destination="g8g-cB-lwB" id="y40-xN-cFw"/>
+                                            <outlet property="stickerLabel" destination="P0h-kK-rGk" id="Du3-1C-7H7"/>
                                             <outlet property="txtDeadLine" destination="07u-1L-sgP" id="p6k-ln-dI3"/>
                                             <outlet property="txtTitle" destination="APY-uA-Ede" id="d4Q-7f-1Yq"/>
                                             <segue destination="KNk-iF-zta" kind="show" identifier="chuyen_detailNotes" id="Zub-Pz-5MC"/>
@@ -449,7 +457,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập tên nhãn dán..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q3j-dg-FxF">
-                                <rect key="frame" x="20" y="152" width="353" height="44"/>
+                                <rect key="frame" x="20" y="152" width="266.66666666666669" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="rN8-rL-uLm"/>
                                 </constraints>
@@ -586,7 +594,7 @@
                                     <color key="baseForegroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="LaF-bL-SVJ" kind="show" id="r9B-f5-MlZ"/>
+                                    <segue destination="LaF-bL-SVJ" kind="show" identifier="showTags" id="r9B-f5-MlZ"/>
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="KhM-3v-Khy">
@@ -651,6 +659,7 @@
                     <connections>
                         <outlet property="date" destination="KhM-3v-Khy" id="4En-tB-dVc"/>
                         <outlet property="reminderText" destination="da9-8W-6iO" id="y4B-ht-KMJ"/>
+                        <outlet property="stickerText" destination="U1L-Rj-0tp" id="kQd-2i-tmX"/>
                         <outlet property="titleText" destination="IXd-Yp-tNS" id="r8J-iv-4Jy"/>
                     </connections>
                 </viewController>

@@ -13,6 +13,7 @@ class cellHomeTableViewCell: UITableViewCell {
     @IBOutlet weak var datetimeDeadLine:UILabel!
     @IBOutlet weak var statusIcon:UIImageView!
     @IBOutlet weak var isGhimIcon:UIImageView!
+    @IBOutlet weak var stickerLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
