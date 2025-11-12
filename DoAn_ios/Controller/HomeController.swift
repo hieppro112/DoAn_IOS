@@ -19,7 +19,12 @@ class HomeController: UIViewController, UITableViewDataSource {
     
     
     
-
+    @IBAction func addNote(_ sender: UIButton) {
+    }
+    @IBAction func unwindToHome(segue: UIStoryboardSegue) {
+           // Hàm này để nhận unwind segue từ AddNote
+           print("Đã quay về Home từ AddNote")
+       }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -206,6 +211,17 @@ class HomeController: UIViewController, UITableViewDataSource {
                     self.tableView.reloadRows(at: [indexPath], with: .automatic)
                 }
         }
+        // THÊM MỚI – GIỐNG HỆT DETAIL thang
+                if segue.identifier == "chuyen_addNote",
+                        let addVC = segue.destination as? AddNoteController {
+                    
+                    addVC.onNoteAdded = { [weak self] newNote in
+                        guard let self = self else { return }
+                        self.notes.append(newNote)
+                        self.notes.sort { $0.date < $1.date }
+                        self.tableView.reloadData()
+                    }
+                }
     }
     
     

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE579A352EC4D22500618D0B /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE579A342EC4D22200618D0B /* Tag.swift */; };
+		CE579A392EC4D24C00618D0B /* AddTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE579A362EC4D24300618D0B /* AddTagController.swift */; };
+		CE579A3A2EC4D24C00618D0B /* TagCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE579A372EC4D24600618D0B /* TagCollectionView.swift */; };
+		CE579A3B2EC4D24C00618D0B /* TagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE579A382EC4D24A00618D0B /* TagController.swift */; };
+		CE579A3D2EC4D63E00618D0B /* AddNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE579A3C2EC4D63D00618D0B /* AddNoteController.swift */; };
 		CE85978D2EBF0BDE003DA8A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE85978C2EBF0BDE003DA8A3 /* AppDelegate.swift */; };
 		CE85978F2EBF0BDE003DA8A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE85978E2EBF0BDE003DA8A3 /* SceneDelegate.swift */; };
 		CE8597912EBF0BDE003DA8A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8597902EBF0BDE003DA8A3 /* ViewController.swift */; };
@@ -42,6 +47,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE579A342EC4D22200618D0B /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		CE579A362EC4D24300618D0B /* AddTagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagController.swift; sourceTree = "<group>"; };
+		CE579A372EC4D24600618D0B /* TagCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionView.swift; sourceTree = "<group>"; };
+		CE579A382EC4D24A00618D0B /* TagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagController.swift; sourceTree = "<group>"; };
+		CE579A3C2EC4D63D00618D0B /* AddNoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteController.swift; sourceTree = "<group>"; };
 		CE8597892EBF0BDE003DA8A3 /* DoAn_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoAn_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE85978C2EBF0BDE003DA8A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE85978E2EBF0BDE003DA8A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +161,10 @@
 		CE8597BD2EBF0C59003DA8A3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CE579A3C2EC4D63D00618D0B /* AddNoteController.swift */,
+				CE579A362EC4D24300618D0B /* AddTagController.swift */,
+				CE579A372EC4D24600618D0B /* TagCollectionView.swift */,
+				CE579A382EC4D24A00618D0B /* TagController.swift */,
 				CE8597902EBF0BDE003DA8A3 /* ViewController.swift */,
 				CE8824572EBFC6A4007A6474 /* HomeController.swift */,
 				CEB448D12EC0459C004C8308 /* cellHomeTableViewCell.swift */,
@@ -162,6 +176,7 @@
 		CE94F6E12EC04CC600A32B62 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				CE579A342EC4D22200618D0B /* Tag.swift */,
 				CE94F6E22EC04CE700A32B62 /* NoteData.swift */,
 				CE8CD9782EC321F0004058D5 /* databaseNotes.swift */,
 			);
@@ -307,11 +322,16 @@
 			files = (
 				CE8824582EBFC6A4007A6474 /* HomeController.swift in Sources */,
 				CE94F6E32EC04CE700A32B62 /* NoteData.swift in Sources */,
+				CE579A3D2EC4D63E00618D0B /* AddNoteController.swift in Sources */,
 				CE8597912EBF0BDE003DA8A3 /* ViewController.swift in Sources */,
 				CEE0FFB52EC16008003EBE14 /* DetailNoteController.swift in Sources */,
 				CE8CD9792EC321F0004058D5 /* databaseNotes.swift in Sources */,
+				CE579A3A2EC4D24C00618D0B /* TagCollectionView.swift in Sources */,
 				CE85978D2EBF0BDE003DA8A3 /* AppDelegate.swift in Sources */,
+				CE579A392EC4D24C00618D0B /* AddTagController.swift in Sources */,
+				CE579A352EC4D22500618D0B /* Tag.swift in Sources */,
 				CEB448D22EC0459C004C8308 /* cellHomeTableViewCell.swift in Sources */,
+				CE579A3B2EC4D24C00618D0B /* TagController.swift in Sources */,
 				CE85978F2EBF0BDE003DA8A3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
