@@ -14,6 +14,7 @@ import Foundation
     var content: String
     var date: Date
     var isCompleted: Int = 0
+    var isGhim: Int = 0
 
     // Hàm định dạng ngày hiển thị
     var formattedDate: String {

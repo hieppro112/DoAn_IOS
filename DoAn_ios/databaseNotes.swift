@@ -10,6 +10,7 @@ class DatabaseManager {
         openDatabase()
         createTableIfNeeded()
     }
+    
 
     // Mở (hoặc tạo mới) database
     private func openDatabase() {
@@ -29,7 +30,8 @@ class DatabaseManager {
             title TEXT,
             content TEXT,
             date TEXT,
-            isCompleted INTEGER DEFAULT 0
+            isCompleted INTEGER DEFAULT 0,
+            isGhim INTEGER DEFAULT 0
         )
         """
         do {
@@ -57,16 +59,21 @@ class DatabaseManager {
         var notes: [NoteData] = []
         guard let db = database, db.open() else { return [] }
 
-        let sql = "SELECT * FROM notes ORDER BY date DESC, isCompleted DESC"
+        let sql = "SELECT * FROM notes ORDER BY isGhim DESC, date DESC, isCompleted DESC"
         do {
             let results = try db.executeQuery(sql, values: nil)
             while results.next() {
+                //xu ly du lieu cho ghim
+                let isGhimValue = results.object(forColumn: "isGhim")
+                let isGhim = (isGhimValue as? NSNumber)?.intValue ?? 0
                 let note = NoteData(
                     id: Int(results.int(forColumn: "id")),
                     title: results.string(forColumn: "title") ?? "",
                     content: results.string(forColumn: "content") ?? "",
                     date: ISO8601DateFormatter().date(from: results.string(forColumn: "date") ?? "") ?? Date(),
-                    isCompleted: Int(results.int(forColumn: "isCompleted"))
+                    isCompleted: Int(results.int(forColumn: "isCompleted")),
+                    isGhim: isGhim
+                    
                 )
                 notes.append(note)
             }
@@ -90,6 +97,19 @@ class DatabaseManager {
         db.close()
     }
     
+//    //xoa tat ca
+//    func deleteAll(){
+//        guard let db = database, db.open() else { return }
+//        let sql = "DELETE FROM notes"
+//        do {
+//            try db.executeUpdate()
+//            print("xoá thành công")
+//        } catch {
+//            print(" Lỗi xoá:", error.localizedDescription)
+//        }
+//        db.close()
+//    }
+    
     // Cập nhật ghi chú
     func updateNote(note:NoteData) {
         guard let db = database, db.open() else { return }
@@ -103,6 +123,20 @@ class DatabaseManager {
             print("Cập nhật note id=\(note.id) thành công")
         } catch {
             print(" Lỗi khi cập nhật note:", error.localizedDescription)
+        }
+        db.close()
+    }
+    
+    // Cập nhật trạng thái ghim / bỏ ghim
+    func togglePinNote(id: Int, isGhim: Int) {
+        guard let db = database, db.open() else { return }
+        let newValue = (isGhim == 1) ? 0 : 1  // nếu đang ghim thì bỏ ghim, ngược lại ghim
+        let sql = "UPDATE notes SET isGhim = ? WHERE id = ?"
+        do {
+            try db.executeUpdate(sql, values: [newValue, id])
+            print("Đã cập nhật isGhim = \(newValue) cho note id \(id)")
+        } catch {
+            print("Lỗi khi cập nhật ghim:", error.localizedDescription)
         }
         db.close()
     }
