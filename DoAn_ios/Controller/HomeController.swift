@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class HomeController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView:UITableView!
@@ -19,6 +20,24 @@ class HomeController: UIViewController, UITableViewDataSource {
     
     
     
+    @IBAction func btnList(_ sender: UIButton) {
+        let taskListView = TaskListView()
+            let hostingController = UIHostingController(rootView: taskListView)
+            
+            guard let navigationController = self.navigationController else { return }
+
+            // KHÔI PHỤC Navigation Bar: Cần phải hiện thanh bar để nút Back UIKit xuất hiện
+            navigationController.setNavigationBarHidden(false, animated: true)
+
+            // ĐẶT TIÊU ĐỀ (Hiện tại sẽ là 'Danh sách các công việc')
+            hostingController.title = "Danh sách các công việc"
+            
+            // (Nếu bạn muốn nút Thống kê)
+            // let statsButton = UIBarButtonItem(...)
+            // hostingController.navigationItem.rightBarButtonItem = statsButton
+            
+            navigationController.pushViewController(hostingController, animated: true)
+    }
     @IBAction func addNote(_ sender: UIButton) {
     }
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
@@ -43,6 +62,15 @@ class HomeController: UIViewController, UITableViewDataSource {
         //xu ly long press de ghim
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(ghimNote(_:)))
         tableView.addGestureRecognizer(longPress)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDetailRequest(notification:)), name: .didRequestNoteDetail, object: nil)
+    }
+    //Bo xung de chuyen trang file (Khanh)
+    @objc func handleDetailRequest(notification: Notification) {
+        guard let note = notification.object as? NoteData else { return }
+        
+        // Gọi segue, truyền NoteData làm sender
+        performSegue(withIdentifier: "chuyen_detailNotes", sender: note)
     }
     
     //MARK: GHIM NOTE
@@ -90,22 +118,21 @@ class HomeController: UIViewController, UITableViewDataSource {
     //MARK: lấy dữ liệu
     func loadNotes(){
         let today = Date()
-    let dateString = ISO8601DateFormatter().string(from: today)
-    //them du lieu
-//        DatabaseManager.shared.insertNote(title: "ghi chu 1", content: "chao moij nguoi", date: dateString)
-        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
-    
-    //gan du lieu
-    notes = DatabaseManager.shared.fetchAllNotes()
+                let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
 
-        notes = notes.filter { note in
-            Calendar.current.isDate(note.date, inSameDayAs: today) ||
-            Calendar.current.isDate(note.date, inSameDayAs: tomorrow)
-        }
-        
+                // Lấy tất cả ghi chú
+                let allNotes = DatabaseManager.shared.fetchAllNotes()
 
-        // Cập nhật lại giao diện
-        tableView.reloadData()
+                // Lọc chỉ giữ hôm nay và ngày mai
+                notes = allNotes.filter { note in
+                    Calendar.current.isDate(note.date, inSameDayAs: today) ||
+                    Calendar.current.isDate(note.date, inSameDayAs: tomorrow)
+                }
+
+                // Cập nhật notesSearch để TableView hiển thị đúng
+                notesSearch = notes
+
+                tableView.reloadData()
         
     }
     
@@ -169,6 +196,50 @@ class HomeController: UIViewController, UITableViewDataSource {
     //MARK: XU LY PREPARE
     //chuyen sang man hinh detail
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "chuyen_detailNotes",
+               let desVC = segue.destination as? DetailNoteController,
+               let noteFromSender = sender as? NoteData {
+                
+                // 1. Gán NoteData được truyền từ SwiftUI
+                desVC.note = noteFromSender
+                
+                // 2. TÌM LẠI indexPath TỪ noteFromSender.id
+                // Vì note được gửi qua sender, ta phải tìm vị trí index của nó trong mảng notes
+                if let index = notes.firstIndex(where: { $0.id == noteFromSender.id }) {
+                    let indexPath = IndexPath(row: index, section: 0)
+
+                    // 3. ĐỊNH NGHĨA CALLBACKs (Giữ nguyên logic gốc của bạn)
+                    
+                    // Hàm cập nhật (dùng cho onSave, onComplete, onNotComplete)
+                    let updateNoteInArray: (NoteData) -> Void = { [weak self] updatedNote in
+                        guard let self = self else { return }
+                        
+                        // Cần tìm lại index vì mảng notes có thể đã bị sắp xếp lại (hoặc filter)
+                        if let newIndex = self.notes.firstIndex(where: { $0.id == updatedNote.id }) {
+                            let newIndexPath = IndexPath(row: newIndex, section: 0)
+                            self.notes[newIndex] = updatedNote
+                            self.tableView.reloadRows(at: [newIndexPath], with: .automatic)
+                        } else {
+                            // Nếu note không còn trong mảng, reload toàn bộ
+                            self.tableView.reloadData()
+                        }
+                    }
+                    
+                    // Gán tất cả các closure cập nhật
+                    desVC.onSave = updateNoteInArray
+                    desVC.onNotComplete = updateNoteInArray
+                    desVC.onComplete = updateNoteInArray
+
+                    // Gán closure xóa
+                    desVC.onDelete = { [weak self] deletedNote in
+                        guard let self = self else { return }
+                        self.notes.removeAll { $0.id == deletedNote.id }
+                        self.tableView.reloadData()
+                    }
+                }
+                
+                return
+            }
         guard segue.identifier == "chuyen_detailNotes",
                  let desVC = segue.destination as? DetailNoteController,
                  let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -233,6 +304,7 @@ class HomeController: UIViewController, UITableViewDataSource {
         
         //print("note tra ve: \(notes[0].isCompleted)")
         searchTextChanged(txtSearch)
+        loadNotes()
         tableView.reloadData()
     }
 }

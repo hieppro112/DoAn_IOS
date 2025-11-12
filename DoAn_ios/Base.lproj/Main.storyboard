@@ -154,10 +154,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPO-CC-TmI">
-                                <rect key="frame" x="164.66666666666666" y="768" width="64" height="50"/>
+                                <rect key="frame" x="164.66666666666666" y="768" width="64" height="34.333333333333371"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="7aL-Wj-9KS"/>
+                                    <constraint firstAttribute="height" constant="34.329999999999998" id="Coc-Mk-tpm"/>
                                     <constraint firstAttribute="width" constant="64" id="Fly-8s-dSl"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="tHZ-vo-dyF"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system">
@@ -171,11 +172,22 @@
                                     <segue destination="iVc-Sd-EAV" kind="show" identifier="chuyen_addNote" id="COi-CC-Rni"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MyA-t6-fSk">
+                                <rect key="frame" x="60" y="766" width="74" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="list.clipboard" catalog="system">
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="btnList:" destination="gjN-N2-m0i" eventType="touchUpInside" id="pGy-4u-MoQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vas-XO-0Kv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="lPO-CC-TmI" firstAttribute="centerX" secondItem="868-1T-Q6l" secondAttribute="centerX" id="4GK-iA-2L6"/>
                             <constraint firstItem="Vas-XO-0Kv" firstAttribute="trailing" secondItem="LIv-EU-RIC" secondAttribute="trailing" constant="35" id="5QZ-Je-I12"/>
                             <constraint firstItem="LIv-EU-RIC" firstAttribute="leading" secondItem="vay-QL-5QY" secondAttribute="trailing" constant="13" id="5nU-5a-46x"/>
                             <constraint firstItem="vay-QL-5QY" firstAttribute="leading" secondItem="Vas-XO-0Kv" secondAttribute="leading" constant="7" id="6Cz-Vz-GIs"/>
@@ -183,11 +195,13 @@
                             <constraint firstItem="vay-QL-5QY" firstAttribute="top" secondItem="Vas-XO-0Kv" secondAttribute="top" constant="4" id="Apc-pi-6qi"/>
                             <constraint firstItem="HZU-vI-5TP" firstAttribute="top" secondItem="vay-QL-5QY" secondAttribute="bottom" constant="8" symbolic="YES" id="AqB-Tg-n8a"/>
                             <constraint firstItem="wBb-bY-KST" firstAttribute="leading" secondItem="Vas-XO-0Kv" secondAttribute="leading" constant="16" id="B9B-SJ-GN2"/>
+                            <constraint firstItem="lPO-CC-TmI" firstAttribute="centerX" secondItem="868-1T-Q6l" secondAttribute="centerX" id="D5V-MT-rwI"/>
                             <constraint firstItem="LIv-EU-RIC" firstAttribute="top" secondItem="Vas-XO-0Kv" secondAttribute="top" constant="4" id="GyQ-6W-22R"/>
                             <constraint firstItem="lPO-CC-TmI" firstAttribute="top" secondItem="HZU-vI-5TP" secondAttribute="bottom" constant="45" id="Pmh-sL-qfX"/>
                             <constraint firstItem="LIv-EU-RIC" firstAttribute="leading" secondItem="vay-QL-5QY" secondAttribute="trailing" constant="13" id="RcL-Ug-Vdt"/>
                             <constraint firstItem="HZU-vI-5TP" firstAttribute="top" secondItem="vay-QL-5QY" secondAttribute="bottom" constant="8" symbolic="YES" id="RvQ-bJ-DJE"/>
                             <constraint firstItem="HZU-vI-5TP" firstAttribute="leading" secondItem="Vas-XO-0Kv" secondAttribute="leading" constant="6" id="XU1-lf-VoX"/>
+                            <constraint firstItem="Vas-XO-0Kv" firstAttribute="bottom" secondItem="lPO-CC-TmI" secondAttribute="bottom" constant="15.67" id="bqf-1w-JKF"/>
                             <constraint firstItem="Vas-XO-0Kv" firstAttribute="trailing" secondItem="HZU-vI-5TP" secondAttribute="trailing" constant="16" id="rvi-SN-qU0"/>
                         </constraints>
                     </view>
@@ -199,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7z-lX-37d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1820.6106870229007" y="-35.211267605633807"/>
+            <point key="canvasLocation" x="2747.3282442748091" y="-35.211267605633807"/>
         </scene>
         <!--Nội dung ghi chú-->
         <scene sceneID="320-tW-gLc">
@@ -343,7 +357,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pHM-ul-uP4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2765.6488549618321" y="-35.211267605633807"/>
+            <point key="canvasLocation" x="3692.3664122137402" y="-35.211267605633807"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YlM-13-ioY">
@@ -356,7 +370,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="gjN-N2-m0i" kind="relationship" relationship="rootViewController" id="vvK-aZ-oSu"/>
+                        <segue destination="F3B-4E-SPL" kind="relationship" relationship="rootViewController" id="vvK-aZ-oSu"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pkQ-pP-VFl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -372,7 +386,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4wS-Pg-8ae">
-                                <rect key="frame" x="0.0" y="163" width="393" height="507"/>
+                                <rect key="frame" x="0.0" y="163" width="393" height="556"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uKb-Ng-Nus">
                                     <size key="itemSize" width="128" height="128"/>
@@ -645,12 +659,32 @@
             </objects>
             <point key="canvasLocation" x="1192" y="829"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eUn-LN-NpQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F3B-4E-SPL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="hwU-ST-nnR"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6OZ-sk-GWy">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gjN-N2-m0i" kind="relationship" relationship="rootViewController" id="DxG-9i-8IH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QPF-qf-JdF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1820.6106870229007" y="-35.211267605633807"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="r9B-f5-MlZ"/>
+        <segue reference="5LA-KK-gcS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
+        <image name="list.clipboard" catalog="system" width="103" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.pencil" catalog="system" width="128" height="113"/>
         <image name="tag.fill" catalog="system" width="128" height="118"/>
