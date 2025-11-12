@@ -153,7 +153,7 @@ class HomeController: UIViewController, UITableViewDataSource {
         super.viewWillAppear(animated)
         notes = DatabaseManager.shared.fetchAllNotes()
         
-        print("note tra ve: \(notes[0].isCompleted)")
+       // print("note tra ve: \(notes[0].isCompleted)")
         tableView.reloadData()
     }
     
