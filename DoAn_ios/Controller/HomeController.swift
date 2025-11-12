@@ -87,7 +87,7 @@ class HomeController: UIViewController, UITableViewDataSource {
         let today = Date()
     let dateString = ISO8601DateFormatter().string(from: today)
     //them du lieu
-//        DatabaseManager.shared.insertNote(title: "ghi chu 1", content: "chao moij nguoi", date: dateString)
+        DatabaseManager.shared.insertNote(title: "ghi chu 1", content: "chao moij nguoi", date: dateString)
         let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
     
     //gan du lieu
