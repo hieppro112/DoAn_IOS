@@ -2,7 +2,7 @@
 //  NoteData.swift
 //  DoAn_ios
 //
-//  Created by  User on 09.11.2025.
+//  Created by  User on 09.11.2025.
 //
 
 import Foundation
@@ -13,6 +13,11 @@ import Foundation
     var title: String
     var content: String
     var date: Date
+    var tags: [Tag] = []
+//     var isCompleteBool: Bool {
+//             return isCompleted == 1
+//         }
+//=======
     var isCompleted: Int = 0
     var isGhim: Int = 0
 
