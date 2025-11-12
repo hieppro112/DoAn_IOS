@@ -13,11 +13,18 @@ import Foundation
     var title: String
     var content: String
     var date: Date
-    var isCompleted: Int = 1
+
+    var isCompleted: Int = 0
+    var isGhim: Int = 0
     var tags: [Tag] = []
-     var isCompleteBool: Bool {
-             return isCompleted == 1
-         }
+//     var isCompleteBool: Bool {
+//             return isCompleted == 1
+//         }
+//=======
+//    var isCompleted: Int = 0
+//    var isGhim: Int = 0
+//
+//>>>>>>> main
     // Hàm định dạng ngày hiển thị
     var formattedDate: String {
         let formatter = DateFormatter()

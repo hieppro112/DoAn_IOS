@@ -32,8 +32,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
-            landmarkName = "setSelected(_:animated:)"
-            landmarkType = "7">
+            landmarkName = "cellHomeTableViewCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
             endingLineNumber = "101"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkName = "loadNotes()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
