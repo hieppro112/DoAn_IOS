@@ -115,6 +115,7 @@ class DatabaseManager {
         guard let db = database, db.open() else { return }
         let sql = """
             UPDATE notes
+            UPDATE notesf
             SET title = ?, content = ?, date = ?, isCompleted = ?
             WHERE id = ?
         """

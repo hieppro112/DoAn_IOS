@@ -225,19 +225,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="691"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29/10/2025" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUI-un-md1">
-                                        <rect key="frame" x="28" y="59.000000000000007" width="113" height="26.333333333333336"/>
+                                        <rect key="frame" x="28" y="162" width="113" height="26.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" systemColor="systemPinkColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Ca1-gM-J5a">
-                                        <rect key="frame" x="30" y="121.99999999999999" width="332.33333333333331" height="34.333333333333329"/>
+                                        <rect key="frame" x="30" y="225" width="332.33333333333331" height="34.333333333333314"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7r-Wr-bzE">
                                                 <rect key="frame" x="0.0" y="0.0" width="153.66666666666666" height="34.333333333333336"/>
                                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Chua hoan thanh">
+                                                <buttonConfiguration key="configuration" style="plain" title="Chưa hoàn thành">
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -249,7 +249,7 @@
                                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Hoan thanh">
+                                                <buttonConfiguration key="configuration" style="plain" title="Hoàn thành">
                                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -259,7 +259,7 @@
                                         </subviews>
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qqE-bO-vNF">
-                                        <rect key="frame" x="30" y="8" width="332" height="28"/>
+                                        <rect key="frame" x="30" y="111" width="332" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="332" id="twB-ur-7OK"/>
                                         </constraints>
@@ -267,7 +267,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="`12`12`s" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MDS-9h-UIQ">
-                                        <rect key="frame" x="30" y="183" width="332" height="397"/>
+                                        <rect key="frame" x="30" y="286" width="332" height="397"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="397" id="ACb-mr-b8z"/>
