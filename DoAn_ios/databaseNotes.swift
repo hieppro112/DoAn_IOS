@@ -43,9 +43,22 @@ class DatabaseManager {
                     color TEXT NOT NULL
                 );
                 """
+        
+        // THang: Thêm bảng link_tags để liên kết notes và tags
+         let createLinkTagsTableSQL = """
+         CREATE TABLE IF NOT EXISTS link_tags (
+             id INTEGER PRIMARY KEY AUTOINCREMENT,
+             notesID INTEGER NOT NULL,
+             tagID INTEGER NOT NULL,
+             FOREIGN KEY (notesID) REFERENCES notes(id) ON DELETE CASCADE,
+             FOREIGN KEY (tagID) REFERENCES tags(id) ON DELETE CASCADE,
+             UNIQUE(notesID, tagID)
+         );
+         """
         do {
             try db.executeUpdate(createTableSQL, values: nil)
             try db.executeUpdate(createTagsTableSQL, values: nil)
+            try db.executeUpdate(createLinkTagsTableSQL, values: nil)
         } catch {
             print(" Lỗi tạo bảng:", error.localizedDescription)
         }

@@ -180,7 +180,29 @@ class HomeController: UIViewController, UITableViewDataSource {
 //            cell.statusIcon.tintColor = .systemRed
 //        }
         
+        // THÊM: HIỂN THỊ STICKER NẾU CÓ - THang (ĐẶT Ở ĐÂY)
+     let noteTags = DatabaseManager.shared.fetchTags(for: note.id)
+     if let firstTag = noteTags.first {
+         if let stickerLabel = cell.stickerLabel {
+             stickerLabel.isHidden = false
+             stickerLabel.text = firstTag.name
+             
+             let tagColor = UIColor(hex: firstTag.color) ?? .systemBlue
+             
+             // Styling
+             stickerLabel.textColor = .white
+             stickerLabel.backgroundColor = tagColor
+             stickerLabel.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+             stickerLabel.layer.cornerRadius = 8
+             stickerLabel.layer.masksToBounds = true
+             stickerLabel.textAlignment = .center
+             
 
+             stickerLabel.isUserInteractionEnabled = false
+         }
+     } else {
+         cell.stickerLabel?.isHidden = true
+     }
         return cell
     }
     

@@ -11,26 +11,46 @@ class TagController: UIViewController {
     // Khởi tạo Tag với ID tạm thời 0, màu là String Hex.
     private var tags: [Tag] = [
         Tag(id: 0, name: "Công việc", color: UIColor.systemBlue.toHex()),
-        Tag(id: 0, name: "Học tập", color: UIColor.systemGreen.toHex()),
-        Tag(id: 0, name: "Gia đình", color: UIColor.systemOrange.toHex()),
-        Tag(id: 0, name: "Bạn bè", color: UIColor.systemPurple.toHex()),
-        Tag(id: 0, name: "Sức khỏe", color: UIColor.systemRed.toHex()),
-        Tag(id: 0, name: "Giải trí", color: UIColor.systemYellow.toHex()),
-        Tag(id: 0, name: "Mua sắm", color: UIColor.systemPink.toHex()),
-        Tag(id: 0, name: "Dự án", color: UIColor.systemTeal.toHex()),
-        Tag(id: 0, name: "Du lịch", color: UIColor.systemIndigo.toHex()),
-        Tag(id: 0, name: "Coding", color: UIColor.systemGray.toHex())
+//        Tag(id: 0, name: "Học tập", color: UIColor.systemGreen.toHex()),
+//        Tag(id: 0, name: "Gia đình", color: UIColor.systemOrange.toHex()),
+//        Tag(id: 0, name: "Bạn bè", color: UIColor.systemPurple.toHex()),
+//        Tag(id: 0, name: "Sức khỏe", color: UIColor.systemRed.toHex()),
+//        Tag(id: 0, name: "Giải trí", color: UIColor.systemYellow.toHex()),
+//        Tag(id: 0, name: "Mua sắm", color: UIColor.systemPink.toHex()),
+//        Tag(id: 0, name: "Dự án", color: UIColor.systemTeal.toHex()),
+//        Tag(id: 0, name: "Du lịch", color: UIColor.systemIndigo.toHex()),
+//        Tag(id: 0, name: "Coding", color: UIColor.systemGray.toHex())
     ]
+    
+    //THang: Thêm biến để nhận tag đang được chọn và closure trả về
+    var currentSelectedTag: Tag?
+    var onTagSelected: ((Tag?) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Danh sách Tag"
+        title = "Chọn Sticker" //THang: Đổi tiêu đề cho phù hợp
         view.backgroundColor = .systemGroupedBackground
         setupCollectionView()
         loadSavedTags() // ĐÃ SỬA: Tải từ Database
         enableLongPressToDelete()
+        
+        //THang: Thêm nút Done để xác nhận lựa chọn
+        setupNavigationBar()
+        
         // Cần reloadData() sau khi loadSavedTags()
         collectionView.reloadData()
+    }
+    
+    //THang: Thêm hàm setup navigation bar
+    private func setupNavigationBar() {
+        let doneButton = UIBarButtonItem(title: "Xong", style: .done, target: self, action: #selector(doneButtonTapped))
+        navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    //THang: Thêm hàm xử lý khi nhấn nút Done
+    @objc private func doneButtonTapped() {
+        onTagSelected?(currentSelectedTag)
+        navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -123,7 +143,31 @@ extension TagController: UICollectionViewDataSource, UICollectionViewDelegate {
         // Cập nhật hàm configure (vẫn nhận (String, UIColor))
         cell.configure(with: (tag.name, color))
         
+        //THang: Hiển thị border nếu tag này đang được chọn
+        if tag.id == currentSelectedTag?.id {
+            cell.layer.borderWidth = 3
+            cell.layer.borderColor = UIColor.systemBlue.cgColor
+            cell.layer.cornerRadius = 8
+        } else {
+            cell.layer.borderWidth = 0
+            cell.layer.cornerRadius = 8
+        }
+        
         return cell
+    }
+    
+    //THang: Thêm hàm xử lý khi chọn tag
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedTag = tags[indexPath.item]
+        
+        // Nếu chọn lại tag đang được chọn -> bỏ chọn
+        if selectedTag.id == currentSelectedTag?.id {
+            currentSelectedTag = nil
+        } else {
+            currentSelectedTag = selectedTag
+        }
+        
+        collectionView.reloadData()
     }
     
     func enableLongPressToDelete() {
@@ -141,7 +185,7 @@ extension TagController: UICollectionViewDataSource, UICollectionViewDelegate {
                 
                 let alert = UIAlertController(
                     title: "Xóa nhãn",
-                    message: "Bạn có chắc muốn xóa nhãn “\(tagToDelete.name)” không?",
+                    message: "Bạn có chắc muốn xóa nhãn \"\(tagToDelete.name)\" không?",
                     preferredStyle: .actionSheet
                 )
                 
@@ -193,4 +237,3 @@ extension UIColor {
         self.init(red: r, green: g, blue: b, alpha: 1.0)
     }
 }
-
