@@ -9,11 +9,15 @@ import UIKit
 
 class HomeController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var txtSearch:UITextField!
     //tao format cho date
     let formatDate = DateFormatter()
     let formatter = DateFormatter()
     
     var notes:[NoteData] = []
+    var notesSearch:[NoteData] = []
+    
+    
     
 
     override func viewDidLoad() {
@@ -27,45 +31,91 @@ class HomeController: UIViewController, UITableViewDataSource {
 //        let date2 = formatter.date(from: "2025-11-15")!
 //        let date3 = formatter.date(from: "2025-11-12")!
         
-//        notes = [
-//            NoteData(id: 4, title: "đi chơi với mấy ní", content: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.", date: date1),
-//            NoteData(id: 4, title: "da banh 3 tran", content: "o pho di bo nguyen hue", date: date3),
-//            NoteData(id: 4, title: "di sinh nhat", content: "o pho di bo nguyen hue", date: date1),
-//
-//            NoteData(id: 4, title: "di hoc bai nhom vao ngay 12/11", content: "o pho di bo nguyen hue", date: date3),
-//
-//                 ];
-        
-        //  Lọc chỉ giữ công việc hôm nay hoặc ngày mai
-            let today = Date()
-        let dateString = ISO8601DateFormatter().string(from: today)
-        //them du lieu
-//        DatabaseManager.shared.insertNote(title: "ghi chu 1", content: "chao moij nguoi", date: dateString)
-            let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
-        
-        //gan du lieu
-        notes = DatabaseManager.shared.fetchAllNotes()
-
-            notes = notes.filter { note in
-                Calendar.current.isDate(note.date, inSameDayAs: today) ||
-                Calendar.current.isDate(note.date, inSameDayAs: tomorrow)
+        //load du lieu
+        loadNotes()
+        //su kien tim kiem
+        txtSearch.addTarget(self, action: #selector(searchTextChanged), for: .editingChanged)
+        //xu ly long press de ghim
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(ghimNote(_:)))
+        tableView.addGestureRecognizer(longPress)
+    }
+    
+    //MARK: GHIM NOTE
+    //xuly long press de ghim note
+    @objc func ghimNote(_ gesture: UILongPressGestureRecognizer){
+        print("long press")
+        if gesture.state == .began{
+            let point = gesture.location(in: tableView)
+            if let indexPath = tableView.indexPathForRow(at: point){
+                let note = notes[indexPath.row]
+                
+                DatabaseManager.shared.togglePinNote(id: note.id, isGhim: note.isGhim)
+                
+                notes = DatabaseManager.shared.fetchAllNotes()
+                notesSearch = notes
+                tableView.reloadData()
+//                loadNotes()
+                
+                let message = (note.isGhim == 1) ? "Đã bỏ ghim" : "Đã ghim công việc"
+                           let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                           present(alert, animated: true)
+                           DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                               alert.dismiss(animated: true)
+                           }
             }
+        }
+    }
+    
+    //MARK: CHINH SUA TIM KIEM
+    //ham tim kiem
+    @objc func searchTextChanged(_ textField: UITextField){
+        let query = textField.text?.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if query!.isEmpty{
+            notesSearch = notes
+        }
+        else{
+            notesSearch = notes.filter{ note in note.title.lowercased().contains(query!)||note.content.lowercased().contains(query!) }
+        }
+        
+        tableView.reloadData()
+    }
+    
+    
+    //MARK: lấy dữ liệu
+    func loadNotes(){
+        let today = Date()
+    let dateString = ISO8601DateFormatter().string(from: today)
+    //them du lieu
+//        DatabaseManager.shared.insertNote(title: "ghi chu 1", content: "chao moij nguoi", date: dateString)
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+    
+    //gan du lieu
+    notes = DatabaseManager.shared.fetchAllNotes()
 
-            // 🔁 Cập nhật lại giao diện
-            tableView.reloadData()
+        notes = notes.filter { note in
+            Calendar.current.isDate(note.date, inSameDayAs: today) ||
+            Calendar.current.isDate(note.date, inSameDayAs: tomorrow)
+        }
+        
 
-        // Do any additional setup after loading the view.
+        // Cập nhật lại giao diện
+        tableView.reloadData()
+        
     }
     
     
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notes.count
+        return notesSearch.count
     }
     
+    
+    
+    //MARK: hiển thị dữ liệu
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let note = notes[indexPath.row]
+        let note = notesSearch[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCellHome", for: indexPath) as! cellHomeTableViewCell
 
             let today = Calendar.current.isDate(note.date, inSameDayAs: Date())
@@ -85,6 +135,16 @@ class HomeController: UIViewController, UITableViewDataSource {
             cell.statusIcon.tintColor = .systemRed
         }
         
+        if note.isGhim == 1 {
+            cell.isGhimIcon.isHidden = false
+            cell.isGhimIcon.image = UIImage(systemName: "pin.fill")
+            cell.isGhimIcon.tintColor = .black
+        }
+        else{
+            cell.isGhimIcon.isHidden = true
+        }
+        
+        
         
 //        if note.isCompleted == 1 {
 //            cell.statusIcon.image = UIImage(systemName: "xmark.circle.fill")
@@ -100,6 +160,8 @@ class HomeController: UIViewController, UITableViewDataSource {
             return cell
     }
     
+    
+    //MARK: XU LY PREPARE
     //chuyen sang man hinh detail
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "chuyen_detailNotes",
@@ -143,19 +205,18 @@ class HomeController: UIViewController, UITableViewDataSource {
                     self.notes[indexPath.row] = updatedNote
                     self.tableView.reloadRows(at: [indexPath], with: .automatic)
                 }
-            
         }
     }
     
     
+    //MARK: LOAD SCREEN
     //ham load lai khi tu man hinh detail tro ve
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         notes = DatabaseManager.shared.fetchAllNotes()
         
-       // print("note tra ve: \(notes[0].isCompleted)")
+        //print("note tra ve: \(notes[0].isCompleted)")
+        searchTextChanged(txtSearch)
         tableView.reloadData()
     }
-    
-    
 }
